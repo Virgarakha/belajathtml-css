@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <div class="chat-header">
+            <h1>Ai Chat!</h1>
+        </div>
+        <div id="chat-box" class="chat-box">
+            <div class="message ai-message">
+                Hello! How can i help you today?
+            </div>
+        </div>
+        <div class="loading" id="loading">Ai is Thinking...</div>
+        <div class="input-container">
+            <input type="text" id="user-input" placeholder="Type youer message in here...">
+            <button id="send-button">Send</button>
+        </div>
+    </div>
+
+    <script>
+        const API_KEY = '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';
+        const API_URL = 'https://api.groq.com/openai/v1/chat/completions';
+
+        const chatBox = document.getElementById('chat-box');
+        const userInput = document.getElementById('user-input');
+        const sendButton = document.getElementById('send-button');
+        const loadingIndicator = document.getElementById('loading');
+
+
+        function addMessage(message, isUser = false) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${isUser ? 'user-message' : 'ai-message'}`;
+            messageDiv.textContent = message;
+            chatBox.appendChild(messageDiv);
+            chatBox.scrollTop = chatBox.scrollHeight;
+            
+        }
+
+        async function sendMessage() {
+    const message = userInput.value.trim();
+    if (!message) return;
+
+    addMessage(message, true); // Tampilkan pesan pengguna
+    userInput.value = ''; // Kosongkan input pengguna
+    loadingIndicator.style.display = 'block'; // Tampilkan indikator loading
+
+    try {
+        const response = await fetch(API_URL, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${API_KEY}`
+            },
+            body: JSON.stringify({
+                model: "mixtral-8x7b-32768", // Gunakan model yang valid
+                messages: [
+                    {
+                        role: "user",
+                        content: message
+                    }
+                ],
+                temperature: 0.7
+            })
+        });
+
+        // Cek apakah respons berhasil
+        if (!response.ok) {
+            throw new Error(`API Error: ${response.status}`);
+        }
+
+        const data = await response.json();
+        const aiResponse = data.choices[0].message.content;
+        addMessage(aiResponse); // Tambahkan respons AI ke chat box
+    } catch (error) {
+        console.error(error);
+        addMessage("An error occurred. Please try again.", false);
+    } finally {
+        loadingIndicator.style.display = 'none'; // Sembunyikan indikator loading
+    }
+}
+
+
+    sendButton.addEventListener('click', sendMessage);
+    userInput.addEventListener('keypress', (e) => {
+        if(e.ket === 'Enter') {
+            sendMessage;
+        }
+    });
+    </script>
+</body>
+</html>
