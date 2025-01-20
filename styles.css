@@ -1,120 +1,98 @@
-    @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
 
-    * {
-        padding: 0;
-        margin: 0;
-        box-sizing: border-box;
-        font-family: 'Montserrat';
-    }
+.flex {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
-    nav {
-        display: flex;
-        justify-content: space-between;
-        padding: 10px;
-        align-items: center;
-        background-color: black;
-        border-bottom: gray 1px solid;
-        color: red;
-    }
+.flex2 {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    width: 100%;
+    height: 50vh;
+}
 
-    nav ul {
-        display: flex;
-        gap: 10px;
-        list-style: none;
-    }
+.card {
+    border: 1px solid #dbdbdb;
+    width: 20%;
+    padding: 20px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    gap: 20px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.13);
+    transition: 0.2s all;
 
-    nav ul li a {
-        text-decoration: none;
-        padding: 10px;
-        color: red;
-    }
+}
 
-    nav .github {
-        display: flex;
-        align-items: center;
-        gap: 5px;
-        background-color: red;
-        padding: 10px;
-        border-radius: 10px;
-    }
+.card2 {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
 
-    nav .github a {
-        text-decoration: none;
-        color: black;
-    }
+.card button {
 
-    .banner {
-        display: flex;
-        flex-direction: column-reverse;
-        width: 100%;
-        gap: 20px;
-        align-items: center;
-    }
 
-    .banner img {
-        width: 50%;
-    }
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    font-weight: 700;
+}
 
-    .banner .teks {
-        text-align: center;
-    }
+.card ul {
+    list-style: none;
+    color: gray;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
 
-    .banner a {
-        background-color: red;
-        text-decoration: none;
-        color: white;
-        padding: 10px;
-        border-radius: 5px;
-    }
+.card p {
+    color: #006eff;
+    font-size: 18px;
+    font-weight: 700;
+}
 
-    .about {
-        width: 90%;
-        margin: 0 auto;
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
-        margin-top: 100px;
-    }
+.label {
+    background-color: #ffd000;
+    position: absolute;
+    right: 0;
+    color: black;
+    top: 0;
+    font-size: 10px;
+}
 
-    .about h1 {
-        color: red;
-    }
+.card h2 span {
+    color: #969696;
+}
 
-    .project {
-        width: 90%;
-        margin: 0 auto;
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
-        margin-top: 100px;
-    }
+.btn {
+    background-color: #006eff;
+    font-size: 20px;
+    color: white;
+    transition: 0.2s all;
 
-    .project1 {
-        width: 70%;
-        margin: 0 auto;
-        border: gray 1px solid;
-        border-radius: 10px;
-        padding: 10px;
-    }
+}
 
-    .project1 img {
-        width: 100%;
-        border-radius: 10px;
-        margin-bottom: 10px;
-    }
+.btn:hover {
+    background-color: #0054c2;
+    transition: 0.2s all;
 
-    .project1 a {
-        background-color: red;
-        border-radius: 5px;
-        padding: 5px;
-        color: white;
-        text-decoration: dashed;
-    }
+}
 
-    .project p {
-        margin-bottom: 10px;
-    }
-
-    /* underline = --------- */
-    /* none = */
-    /* dashed = - - - - - - - */
+.card:hover {
+    background-color: rgb(241, 241, 241);
+    transition: 0.2s all;
+}
